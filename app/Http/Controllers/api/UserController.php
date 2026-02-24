@@ -25,7 +25,10 @@ class UserController extends Controller
         $data = $request->validated();
         $user = User::create($data);
 
-        return response()->json($user, 201);
+        return response()->json([
+            'message' => "Created new user successfully",
+            'user' => $user
+        ], 201);
     }
 
     public function update(UpdateUserRequest $request, User $user)
@@ -33,7 +36,10 @@ class UserController extends Controller
         $data = $request->validated();
 
         $user->update($data);
-        return response()->json($user, 200);
+        return response()->json([
+            'message' => "Updated user successfully",
+            'user' => $user
+        ], 200);
     }
 
     public function destroy(User $user)
